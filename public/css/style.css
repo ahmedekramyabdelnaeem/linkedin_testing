@@ -1,0 +1,246 @@
+/* Job Platform Main Style - Bootstrap Custom Theme */
+
+:root {
+    --primary-blue: #2557A7;
+    --dark-blue: #164081;
+    --hover-blue: #1F4F9A;
+
+    --background: #F3F2F1;
+    --card-bg: #FFFFFF;
+
+    --text-primary: #2D2D2D;
+    --text-secondary: #6F6F6F;
+
+    --border-color: #D9D9D9;
+    --navbar-border: #E4E2E0;
+
+    --success-color: #008561;
+    --danger-color: #D93025;
+    --warning-color: #F5C518;
+
+    --employee-bg: #EEF4FF;
+    --company-bg: #E9F8F2;
+    --admin-bg: #FDECEC;
+
+    --shadow-soft: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* General */
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--dark-blue);
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid var(--navbar-border);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-brand {
+    color: var(--primary-blue) !important;
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.navbar .nav-link {
+    color: var(--text-primary) !important;
+    font-weight: 500;
+    margin: 0 6px;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--primary-blue) !important;
+    border-bottom: 2px solid var(--primary-blue);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 18px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    color: #FFFFFF;
+}
+
+.btn-outline-primary {
+    background-color: #FFFFFF;
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 18px;
+}
+
+.btn-outline-primary:hover {
+    background-color: #EEF4FF;
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+    color: var(--text-primary);
+}
+
+/* Cards */
+.card,
+.job-card,
+.post-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--navbar-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+}
+
+.card-title,
+.job-title,
+.post-title {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.card-text,
+.text-muted,
+.job-location,
+.job-type,
+.post-meta {
+    color: var(--text-secondary) !important;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 0.15rem rgba(37, 87, 167, 0.18);
+}
+
+/* Search Box */
+.search-box {
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    padding: 14px;
+}
+
+/* Status Badges */
+.badge-pending {
+    background-color: var(--warning-color);
+    color: var(--text-primary);
+}
+
+.badge-accepted {
+    background-color: var(--success-color);
+    color: #FFFFFF;
+}
+
+.badge-rejected {
+    background-color: var(--danger-color);
+    color: #FFFFFF;
+}
+
+/* Role Badges */
+.badge-employee {
+    background-color: var(--employee-bg);
+    color: var(--primary-blue);
+}
+
+.badge-company {
+    background-color: var(--company-bg);
+    color: var(--success-color);
+}
+
+.badge-admin {
+    background-color: var(--admin-bg);
+    color: var(--danger-color);
+}
+
+/* Badges General */
+.badge-employee,
+.badge-company,
+.badge-admin,
+.badge-pending,
+.badge-accepted,
+.badge-rejected {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Profile */
+.profile-card {
+    background-color: #FFFFFF;
+    border: 1px solid var(--navbar-border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    padding: 24px;
+}
+
+.profile-img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--primary-blue);
+}
+
+/* Tables */
+.table {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: var(--primary-blue);
+    color: #FFFFFF;
+}
+
+/* Footer */
+.footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid var(--navbar-border);
+    color: var(--text-secondary);
+    padding: 16px 0;
+    margin-top: 40px;
+}

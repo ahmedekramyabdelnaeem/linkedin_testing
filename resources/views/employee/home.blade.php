@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h2>Register</h2>
+<h2>Employee Home</h2>
 
 @endsection

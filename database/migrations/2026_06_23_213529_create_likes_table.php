@@ -24,6 +24,7 @@ return new class extends Migration
 
             $table->timestamps();
             $table->unique(['user_id', 'post_id']);
+            // $table->likes()->count();
         });
     }
 

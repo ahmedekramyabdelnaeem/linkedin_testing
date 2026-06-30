@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\JobListing;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class JobController extends Controller
@@ -16,10 +18,12 @@ class JobController extends Controller
         return view('admin.jobs.index', compact('jobs'));
     }
 
+
+
     public function destroy(JobListing $job): RedirectResponse
     {
         $job->delete();
 
-        return back()->with('status', 'Job listing deleted successfully.');
+        return back()->with('status', 'تم حذف الوظيفة بنجاح.');
     }
 }

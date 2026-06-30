@@ -1,0 +1,12 @@
+admin pade 
+can be create a post 
+can be dleate post 
+can be edit post "في حالة ان البوست دا بتاع الادمن والادمن الي كريتة "
+in a admin poard i want update 
+                ----    ----    
+                ----    ----    
+                ----    ----    
+                ----    ----    
+                ----    ----    
+                 ----------    
+                  --------

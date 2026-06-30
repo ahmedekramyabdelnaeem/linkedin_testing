@@ -1,54 +1,78 @@
-<x-admin-layout title="Manage Comments">
-    <div class="bg-white rounded-lg shadow p-6 mb-6">
-        <h2 class="text-sm font-semibold text-gray-700 mb-3">Add a Comment</h2>
-        <form method="POST" action="{{ route('admin.comments.store') }}" class="space-y-3">
+<x-admin-layout title="إدارة التعليقات">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-8">
+        <h3 class="text-lg font-bold text-gray-800 mb-6">إضافة تعليق جديد</h3>
+        <form action="{{ route('admin.comments.store') }}" method="POST">
             @csrf
-            <div>
-                <label class="block text-sm text-gray-600 mb-1">Post ID</label>
-                <input type="number" name="post_id" class="w-full rounded-md border-gray-300" required>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+                <div class="md:col-span-1">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2">رقم المنشور (ID)</label>
+                    <input type="number" name="post_id" required
+                           class="w-full rounded-lg border-gray-200 text-sm focus:border-blue-500 focus:ring-blue-500 transition-all">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-2">التعليق</label>
+                    <input type="text" name="comment" required placeholder="اكتب تعليقك هنا..."
+                           class="w-full rounded-lg border-gray-200 text-sm focus:border-blue-500 focus:ring-blue-500 transition-all">
+                </div>
+                <div class="md:col-span-1">
+                    <button type="submit" 
+                            class="w-full bg-[#2557A7] hover:bg-[#164081] text-white font-bold py-2.5 px-4 rounded-lg transition-all text-sm shadow-sm">
+                        إضافة التعليق
+                    </button>
+                </div>
             </div>
-            <div>
-                <label class="block text-sm text-gray-600 mb-1">Comment</label>
-                <textarea name="comment" rows="3" class="w-full rounded-md border-gray-300" required></textarea>
-            </div>
-            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Add Comment</button>
         </form>
     </div>
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
-        <table class="w-full text-sm text-left">
-            <thead class="bg-gray-50 text-gray-600">
-                <tr>
-                    <th class="px-6 py-3">#</th>
-                    <th class="px-6 py-3">User</th>
-                    <th class="px-6 py-3">Post</th>
-                    <th class="px-6 py-3">Comment</th>
-                    <th class="px-6 py-3">Posted</th>
-                    <th class="px-6 py-3 text-right">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y">
-                @foreach ($comments as $comment)
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-right">
+                <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-100">
                     <tr>
-                        <td class="px-6 py-3">{{ $comment->id }}</td>
-                        <td class="px-6 py-3">{{ $comment->user?->name }}</td>
-                        <td class="px-6 py-3">#{{ $comment->post_id }}</td>
-                        <td class="px-6 py-3 max-w-md truncate">{{ $comment->comment }}</td>
-                        <td class="px-6 py-3">{{ $comment->created_at->format('Y-m-d') }}</td>
-                        <td class="px-6 py-3 text-right">
-                            <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('Delete this comment?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-800">Delete</button>
-                            </form>
-                        </td>
+                        <th class="px-6 py-4 font-bold">المستخدم</th>
+                        <th class="px-6 py-4 font-bold">المنشور</th>
+                        <th class="px-6 py-4 font-bold">التعليق</th>
+                        <th class="px-6 py-4 font-bold text-left">الإجراءات</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse ($comments as $comment)
+                        <tr class="hover:bg-gray-50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">
+                                        {{ substr($comment->user->name ?? 'U', 0, 1) }}
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-800">{{ $comment->user->name ?? 'غير معروف' }}</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="text-xs font-bold bg-gray-100 text-gray-600 px-2 py-1 rounded">#{{ $comment->post_id }}</span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-sm text-gray-600 max-w-xs truncate">{{ $comment->comment }}</p>
+                            </td>
+                            <td class="px-6 py-4 text-left">
+                                <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}" onsubmit="return confirm('هل أنت متأكد من حذف هذا التعليق؟')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-800 font-bold text-sm transition-colors">حذف</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-6 py-12 text-center text-gray-400">لا توجد تعليقات متاحة.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="mt-6">
-        {{ $comments->links() }}
-    </div>
+    @if ($comments->hasPages())
+        <div class="mt-8">
+            {{ $comments->links() }}
+        </div>
+    @endif
 </x-admin-layout>

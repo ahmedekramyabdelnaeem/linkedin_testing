@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CommentController extends Controller
@@ -30,13 +30,13 @@ class CommentController extends Controller
             'comment' => $validated['comment'],
         ]);
 
-        return back()->with('status', 'Comment added successfully.');
+        return back()->with('status', 'تم إضافة التعليق بنجاح.');
     }
 
     public function destroy(Comment $comment): RedirectResponse
     {
         $comment->delete();
 
-        return back()->with('status', 'Comment deleted successfully.');
+        return back()->with('status', 'تم حذف التعليق بنجاح.');
     }
 }

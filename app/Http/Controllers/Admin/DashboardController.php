@@ -14,9 +14,9 @@ class DashboardController extends Controller
     public function index(): View
     {
         $stats = [
-            'users' => User::count(),
-            'jobs' => JobListing::count(),
-            'posts' => Post::count(),
+            'users'    => User::count(),
+            'jobs'     => JobListing::count(),
+            'posts'    => Post::count(),
             'comments' => Comment::count(),
         ];
 

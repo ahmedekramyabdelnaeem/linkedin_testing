@@ -19,11 +19,11 @@ class UserController extends Controller
     public function destroy(User $user): RedirectResponse
     {
         if ($user->id === auth()->id()) {
-            return back()->with('error', 'You cannot delete your own account.');
+            return back()->with('error', 'لا يمكنك حذف حسابك الخاص.');
         }
 
         $user->delete();
 
-        return back()->with('status', 'User deleted successfully.');
+        return back()->with('status', 'تم حذف المستخدم بنجاح.');
     }
 }

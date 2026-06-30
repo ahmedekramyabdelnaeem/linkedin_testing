@@ -14,7 +14,7 @@ class EnsureUserIsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->user() || $request->user()->role !== 'admin') {
-            abort(403, 'Unauthorized. Admins only.');
+            abort(403, 'غير مصرح. هذه الصفحة للمشرفين فقط.');
         }
 
         return $next($request);

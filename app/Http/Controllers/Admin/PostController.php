@@ -20,6 +20,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return back()->with('status', 'Post deleted successfully.');
+        return back()->with('status', 'تم حذف المنشور بنجاح.');
     }
 }
